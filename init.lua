@@ -11,7 +11,7 @@ vim.g.have_nerd_font = false
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
-
+vim.opt_global.expandtab = true
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
@@ -201,6 +201,9 @@ require('lazy').setup({
         harpoon:list():select(4)
       end)
 
+      vim.keymap.set('n', '<S-h>', function()
+        harpoon:list():remove_at(1)
+      end)
       -- Toggle previous & next buffers stored within Harpoon list
       vim.keymap.set('n', '<C-S-P>', function()
         harpoon:list():prev()
@@ -574,7 +577,9 @@ require('lazy').setup({
             },
           },
         },
+        ts_ls = {},
         pyright = {},
+        julials = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
