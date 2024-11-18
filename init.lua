@@ -83,6 +83,8 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 vim.keymap.set('n', '<leader>dn', vim.diagnostic.get_next, { desc = 'In [D]iagnostics go to [N]ext' })
 
+vim.keymap.set('n', '<C_i>', 'i<C_t><Esc>', { desc = '[I]ndent the current line' })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -183,7 +185,7 @@ require('lazy').setup({
       -- REQUIRED
       vim.keymap.set('n', '<leader>a', function()
         harpoon:list():add()
-      end)
+      end, { desc = '[A]ppend file to harpoon' })
       vim.keymap.set('n', '<C-e>', function()
         harpoon.ui:toggle_quick_menu(harpoon:list())
       end)
@@ -801,17 +803,18 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
+    'navarasu/onedark.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'onedark'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
     end,
+    style = 'warmer',
   },
 
   -- Highlight todo, notes, etc in comments
