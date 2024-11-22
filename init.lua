@@ -204,8 +204,18 @@ require('lazy').setup({
       end)
 
       vim.keymap.set('n', '<S-h>', function()
-        harpoon:list():remove_at(1)
+        harpoon:list():replace_at(1)
       end)
+      vim.keymap.set('n', '<S-t>', function()
+        harpoon:list():replace_at(2)
+      end)
+      vim.keymap.set('n', '<S-n>', function()
+        harpoon:list():replace_at(3)
+      end)
+      vim.keymap.set('n', '<S-s>', function()
+        harpoon:list():replace_at(4)
+      end)
+
       -- Toggle previous & next buffers stored within Harpoon list
       vim.keymap.set('n', '<C-S-P>', function()
         harpoon:list():prev()
