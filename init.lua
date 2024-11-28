@@ -225,6 +225,19 @@ require('lazy').setup({
       end)
     end,
   },
+  {
+    'vinnymeller/swagger-preview.nvim',
+    cmd = { 'SwaggerPreview', 'SwaggerPreviewStop', 'SwaggerPreviewToggle' },
+    build = 'npm i',
+    config = function()
+      require('swagger-preview').setup {
+        -- The port to run the preview server on
+        port = 8000,
+        -- The host to run the preview server on
+        host = 'localhost',
+      }
+    end,
+  },
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
@@ -591,6 +604,7 @@ require('lazy').setup({
         ts_ls = {},
         pyright = {},
         julials = {},
+        jsonls = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
