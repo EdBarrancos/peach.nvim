@@ -209,9 +209,6 @@ require('lazy').setup({
       vim.keymap.set('n', '<S-t>', function()
         harpoon:list():replace_at(2)
       end)
-      vim.keymap.set('n', '<S-n>', function()
-        harpoon:list():replace_at(3)
-      end)
       vim.keymap.set('n', '<S-s>', function()
         harpoon:list():replace_at(4)
       end)
@@ -237,6 +234,13 @@ require('lazy').setup({
         host = 'localhost',
       }
     end,
+  },
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    main = 'ibl',
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
   },
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
