@@ -301,7 +301,7 @@ require('lazy').setup({
         { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
-        { '<leader>w', group = '[W]orkspace' },
+        { '<leader>w', group = '[W]orkspace + s[W]agger' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
@@ -371,6 +371,14 @@ require('lazy').setup({
         --   },
         -- },
         -- pickers = {}
+        defaults = {
+          hidden = true,
+          file_ignore_patterns = { 'venv', 'node_modules', 'target' },
+          path_display = function(opts, path)
+            local tail = require('telescope.utils').path_tail(path)
+            return string.format('%s (%s)', tail, path)
+          end,
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
