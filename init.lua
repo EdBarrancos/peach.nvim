@@ -188,35 +188,44 @@ require('lazy').setup({
       -- REQUIRED
       harpoon:setup()
       -- REQUIRED
-      vim.keymap.set('n', '<leader>a', function()
+      vim.keymap.set('n', '<leader>ha', function()
         harpoon:list():add()
-      end, { desc = '[A]ppend file to harpoon' })
+      end, { desc = '[H]arpoon - [A]ppend file' })
       vim.keymap.set('n', '<C-e>', function()
         harpoon.ui:toggle_quick_menu(harpoon:list())
       end)
 
-      vim.keymap.set('n', '<C-h>', function()
+      vim.keymap.set('n', '<leader>h1', function()
         harpoon:list():select(1)
-      end)
-      vim.keymap.set('n', '<C-t>', function()
-        harpoon:list():select(2)
-      end)
-      vim.keymap.set('n', '<C-n>', function()
-        harpoon:list():select(3)
-      end)
-      vim.keymap.set('n', '<C-s>', function()
-        harpoon:list():select(4)
-      end)
+      end, { desc = '[H]arpoon [1]st pos' })
 
-      vim.keymap.set('n', '<S-h>', function()
+      vim.keymap.set('n', '<leader>h2', function()
+        harpoon:list():select(2)
+      end, { desc = '[H]arpoon [2]st pos' })
+
+      vim.keymap.set('n', '<leader>h3', function()
+        harpoon:list():select(3)
+      end, { desc = '[H]arpoon [3]st pos' })
+
+      vim.keymap.set('n', '<leader>h4', function()
+        harpoon:list():select(4)
+      end, { desc = '[H]arpoon [4]st pos' })
+
+      vim.keymap.set('n', '<leader>hr1', function()
         harpoon:list():replace_at(1)
-      end)
-      vim.keymap.set('n', '<S-t>', function()
+      end, { desc = '[H]arpoon [R]eplace [1]st pos' })
+
+      vim.keymap.set('n', '<leader>hr2', function()
         harpoon:list():replace_at(2)
-      end)
-      vim.keymap.set('n', '<S-s>', function()
+      end, { desc = '[H]arpoon [R]eplace [2]st pos' })
+
+      vim.keymap.set('n', '<leader>hr3', function()
+        harpoon:list():replace_at(3)
+      end, { desc = '[H]arpoon [R]eplace [3]st pos' })
+
+      vim.keymap.set('n', '<leader>hr4', function()
         harpoon:list():replace_at(4)
-      end)
+      end, { desc = '[H]arpoon [R]eplace [4]st pos' })
 
       -- Toggle previous & next buffers stored within Harpoon list
       vim.keymap.set('n', '<C-S-P>', function()
@@ -303,7 +312,8 @@ require('lazy').setup({
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace + s[W]agger' },
         { '<leader>t', group = '[T]oggle + neo[T]ree' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>h', group = 'Git [H]unk + [H]arpoon', mode = { 'n', 'v' } },
+        { '<leader>hr', group = '[H]arpoon [R]eplace', mode = { 'n' } },
       },
     },
   },
