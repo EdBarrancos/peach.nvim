@@ -302,7 +302,7 @@ require('lazy').setup({
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace + s[W]agger' },
-        { '<leader>t', group = '[T]oggle' },
+        { '<leader>t', group = '[T]oggle + neo[T]ree' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
@@ -915,6 +915,20 @@ require('lazy').setup({
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'MuniTanjim/nui.nvim',
+    },
+    config = function()
+      vim.keymap.set('n', '<leader>to', ':Neotree <CR>', { desc = 'neo[T]ree [O]pen' })
+      vim.keymap.set('n', '<leader>tt', ':Neotree toggle <CR>', { desc = 'neo[T]ree [T]oggle' })
+      vim.keymap.set('n', '<leader>tr', ':Neotree reveal <CR>', { desc = 'neo[T]ree [R]eveal' })
+    end,
+  },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
@@ -929,7 +943,6 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
