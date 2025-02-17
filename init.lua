@@ -351,7 +351,7 @@ require('lazy').setup({
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons', opts = {} },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -930,17 +930,35 @@ require('lazy').setup({
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
   {
-    'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v3.x',
+    'nvim-tree/nvim-tree.lua',
+    version = '*',
+    lazy = false,
     dependencies = {
-      'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
-      'MuniTanjim/nui.nvim',
     },
     config = function()
-      vim.keymap.set('n', '<leader>to', ':Neotree <CR>', { desc = 'neo[T]ree [O]pen' })
-      vim.keymap.set('n', '<leader>tt', ':Neotree toggle <CR>', { desc = 'neo[T]ree [T]oggle' })
-      vim.keymap.set('n', '<leader>tr', ':Neotree reveal <CR>', { desc = 'neo[T]ree [R]eveal' })
+      require('nvim-tree').setup {
+        sort_by = 'case_sensitive',
+        git = {
+          enable = true,
+        },
+        filters = {
+          dotfiles = true,
+          custom = { 'node_modules' }, -- Other filtered directories
+        },
+        view = {
+          side = 'left',
+          number = false,
+          relativenumber = false,
+          signcolumn = 'yes',
+          width = 30,
+        },
+        renderer = {
+          group_empty = true,
+        },
+      }
+      vim.keymap.set('n', '<leader>tt', ':NvimTreeToggle<CR>', { desc = 'nvim[T]ree [T]oggle' })
+      vim.keymap.set('n', '<leader>tr', ':NvimTreeFindFile<CR>', { desc = 'nvim[T]ree [R]eveal' })
     end,
   },
 
