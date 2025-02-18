@@ -166,6 +166,24 @@ require('lazy').setup({
   --    require('gitsigns').setup({ ... })
   --
   -- See `:help gitsigns` to understand what the configuration keys do
+  { 'nvim-tree/nvim-web-devicons', opts = {} },
+  {
+    'simaxme/java.nvim',
+  },
+  { 'mfussenegger/nvim-jdtls' },
+  {
+    'antosha417/nvim-lsp-file-operations',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      -- Uncomment whichever supported plugin(s) you use
+      'nvim-tree/nvim-tree.lua',
+      -- "nvim-neo-tree/neo-tree.nvim",
+      -- "simonmclean/triptych.nvim"
+    },
+    config = function()
+      require('lsp-file-operations').setup()
+    end,
+  },
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -443,18 +461,6 @@ require('lazy').setup({
   },
 
   -- LSP Plugins
-  {
-    -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-    -- used for completion, annotations and signatures of Neovim apis
-    'folke/lazydev.nvim',
-    ft = 'lua',
-    opts = {
-      library = {
-        -- Load luvit types when the `vim.uv` word is found
-        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
-      },
-    },
-  },
   { 'Bilal2453/luvit-meta', lazy = true },
   {
     -- Main LSP Configuration
@@ -471,6 +477,17 @@ require('lazy').setup({
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
+      {
+        'folke/lazydev.nvim',
+        ft = 'lua',
+        opts = {
+          library = {
+            -- Load luvit types when the `vim.uv` word is found
+            { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+          },
+        },
+      },
+      { 'Bilal2453/luvit-meta', lazy = true },
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -624,6 +641,7 @@ require('lazy').setup({
             },
           },
         },
+        jdtls = {},
         ts_ls = {},
         pyright = {},
         julials = {},
@@ -910,7 +928,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'java', 'julia' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -943,7 +961,8 @@ require('lazy').setup({
           enable = true,
         },
         filters = {
-          dotfiles = true,
+          dotfiles = false,
+          git_ignored = false,
           custom = { 'node_modules' }, -- Other filtered directories
         },
         view = {
@@ -959,6 +978,7 @@ require('lazy').setup({
       }
       vim.keymap.set('n', '<leader>tt', ':NvimTreeToggle<CR>', { desc = 'nvim[T]ree [T]oggle' })
       vim.keymap.set('n', '<leader>tr', ':NvimTreeFindFile<CR>', { desc = 'nvim[T]ree [R]eveal' })
+      vim.keymap.set('n', '<leader>to', ':NvimTreeFocus<CR>', { desc = 'nvim[T]ree [O]pen' })
     end,
   },
 
@@ -973,8 +993,8 @@ require('lazy').setup({
   --
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
