@@ -1,5 +1,9 @@
 # kickstart.nvim
 
+## My notes
+
+- Install jdtls manually (curl for the latest version) and set it up
+
 ## Introduction
 
 A starting point for Neovim that is:
