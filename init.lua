@@ -646,7 +646,7 @@ require('lazy').setup({
             },
           },
         },
-        jdtls = {},
+        -- jdtls = {},
         ts_ls = {},
         pyright = {},
         julials = {},

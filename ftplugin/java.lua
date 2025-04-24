@@ -1,5 +1,5 @@
 local config = {
-  cmd = { '/home/ebarrancos/.local/share/nvim/mason/bin/jdtls' },
+  cmd = { '/home/ebarrancos/lsp/jdtls/bin/jdtls-custom' },
   root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
 }
 
