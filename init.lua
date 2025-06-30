@@ -175,6 +175,11 @@ require('lazy').setup({
   {
     'simaxme/java.nvim',
   },
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {},
+  },
   { 'mfussenegger/nvim-jdtls' },
   {
     'antosha417/nvim-lsp-file-operations',
@@ -1030,5 +1035,10 @@ require('lazy').setup({
   },
 })
 
+vim.lsp.buf.format {
+  filter = function(client)
+    return client.name ~= 'ts_ls'
+  end,
+}
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
