@@ -111,8 +111,11 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Not correct
 vim.keymap.set('n', '<leader>mk', 'dd 3k p', { desc = '[M]ove line [K]up' })
 vim.keymap.set('n', '<leader>mj', 'dd p', { desc = '[M]ove line [J]down' })
+
+vim.keymap.set('n', '<leader>gbt', ':GitBlameToggle<CR>', { desc = '[G]it [B]lame [T]oggle' })
 
 vim.keymap.set('n', '<leader>gu', function()
   local uuid = vim.fn.system('uuidgen'):gsub('\n', '')
@@ -368,8 +371,10 @@ require('lazy').setup({
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace + s[W]agger' },
         { '<leader>t', group = '[T]oggle + neo[T]ree' },
-        { '<leader>h', group = 'Git [H]unk + [H]arpoon', mode = { 'n', 'v' } },
+        { '<leader>h', group = '[H]arpoon', mode = { 'n', 'v' } },
         { '<leader>hr', group = '[H]arpoon [R]eplace', mode = { 'n' } },
+        { '<leader>g', group = '[G]it + [G]oto + [G]enerate', mode = { 'n', 'v' } },
+        { '<leader>gb', group = '[G]it [B]lame', mode = { 'n', 'v' } },
       },
     },
   },
