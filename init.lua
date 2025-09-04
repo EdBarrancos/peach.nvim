@@ -84,7 +84,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
-vim.keymap.set('n', '<leader>dn', vim.diagnostic.get_next, { desc = 'In [D]iagnostics go to [N]ext' })
+vim.keymap.set('n', '<leader>gnd', vim.diagnostic.get_next, { desc = '[G]oto [N]ext [D]iagnostic' })
 
 vim.keymap.set('n', '<C_i>', 'i<C_t><Esc>', { desc = '[I]ndent the current line' })
 
@@ -112,7 +112,7 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Not correct
-vim.keymap.set('n', '<leader>mk', 'dd 3k p', { desc = '[M]ove line [K]up' })
+vim.keymap.set('n', '<leader>mk', 'dd P', { desc = '[M]ove line [K]up' })
 vim.keymap.set('n', '<leader>mj', 'dd p', { desc = '[M]ove line [J]down' })
 
 vim.keymap.set('n', '<leader>gbt', ':GitBlameToggle<CR>', { desc = '[G]it [B]lame [T]oggle' })
@@ -375,6 +375,7 @@ require('lazy').setup({
         { '<leader>hr', group = '[H]arpoon [R]eplace', mode = { 'n' } },
         { '<leader>g', group = '[G]it + [G]oto + [G]enerate', mode = { 'n', 'v' } },
         { '<leader>gb', group = '[G]it [B]lame', mode = { 'n', 'v' } },
+        { '<leader>gn', group = '[G]oto [N]ext', mode = { 'n', 'v' } },
       },
     },
   },
@@ -443,6 +444,7 @@ require('lazy').setup({
         -- },
         -- pickers = {}
         defaults = {
+          initial_mode = 'insert',
           hidden = true,
           file_ignore_patterns = { 'venv', 'node_modules', 'target' },
           path_display = function(opts, path)
