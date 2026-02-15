@@ -683,7 +683,6 @@ require('lazy').setup({
         -- jdtls = {},
         ts_ls = {},
         pyright = {},
-        julials = {},
         jsonls = {},
         yamlls = {},
         -- rust_analyzer = {},
@@ -711,6 +710,8 @@ require('lazy').setup({
           },
         },
       }
+
+      vim.lsp.enable 'julials'
 
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
