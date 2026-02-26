@@ -244,6 +244,7 @@ require('lazy').setup({
       -- REQUIRED
       harpoon:setup()
       -- REQUIRED
+
       vim.keymap.set('n', '<leader>ha', function()
         harpoon:list():add()
       end, { desc = '[H]arpoon - [A]ppend file' })
@@ -251,6 +252,22 @@ require('lazy').setup({
         harpoon.ui:toggle_quick_menu(harpoon:list())
       end)
 
+      function create_hook_command(targetkey)
+        vim.keymap.set('n', '<leader>h' .. tostring(targetkey), function()
+          harpoon:list():select(targetkey)
+        end, { desc = '[H]arpoon [' .. tostring(targetkey) .. ']st pos' })
+
+        vim.keymap.set('n', '<leader>hr' .. tostring(targetkey), function()
+          harpoon:list():replace_at(targetkey)
+        end, { desc = '[H]arpoon [R]eplace [' .. tostring(targetkey) .. ']st pos' })
+      end
+
+      local targetkeys = { 1, 2, 3, 4, 5 }
+      for k, v in pairs(targetkeys) do
+        create_hook_command(v)
+      end
+
+      --[[
       vim.keymap.set('n', '<leader>h1', function()
         harpoon:list():select(1)
       end, { desc = '[H]arpoon [1]st pos' })
@@ -282,6 +299,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>hr4', function()
         harpoon:list():replace_at(4)
       end, { desc = '[H]arpoon [R]eplace [4]st pos' })
+      --]]
 
       -- Toggle previous & next buffers stored within Harpoon list
       vim.keymap.set('n', '<C-S-P>', function()
