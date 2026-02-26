@@ -74,6 +74,8 @@ vim.opt.scrolloff = 10
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 
+vim.g.editorconfig = true
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -184,7 +186,8 @@ require('lazy').setup({
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     opts = {
       settings = {
-        tsserver_format_on_save = false,
+        tsserver_format_options = {},
+        tsserver_file_preferences = {},
       },
     },
   },
@@ -745,7 +748,7 @@ require('lazy').setup({
 
   { -- Autoformat
     'stevearc/conform.nvim',
-    event = { 'BufWritePre' },
+    event = { 'BufWritePre', 'BufReadPre' },
     cmd = { 'ConformInfo' },
     keys = {
       {
@@ -781,7 +784,9 @@ require('lazy').setup({
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        typescript = { 'prettierd', 'prettier', stop_after_first = true },
+        typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        javascript = { 'prettierd', 'prettier', stop_after_first = true },
       },
     },
   },
