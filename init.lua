@@ -713,8 +713,30 @@ require('lazy').setup({
           },
         },
       }
-
-      vim.lsp.enable 'julials'
+      vim.lsp.config('jetls', {
+        cmd = {
+          'jetls',
+          'serve',
+        },
+        filetypes = { 'julia' },
+        root_markers = { 'Project.toml' },
+        settings = {
+          jetls = {
+            formatter = 'JuliaFormatter',
+            diagnostic = {
+              patterns = {
+                {
+                  pattern = 'lowering/unsorted-import-names',
+                  match_by = 'code',
+                  match_type = 'literal',
+                  severity = 'off',
+                },
+              },
+            },
+          },
+        },
+      })
+      vim.lsp.enable 'jetls'
 
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
