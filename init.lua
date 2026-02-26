@@ -686,7 +686,6 @@ require('lazy').setup({
         -- jdtls = {},
         ts_ls = {},
         pyright = {},
-        julials = {},
         jsonls = {},
         yamlls = {},
         -- rust_analyzer = {},
@@ -714,6 +713,8 @@ require('lazy').setup({
           },
         },
       }
+
+      vim.lsp.enable 'julials'
 
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
@@ -968,8 +969,8 @@ require('lazy').setup({
   },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    version = '*',
     build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
       ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'java', 'julia' },
